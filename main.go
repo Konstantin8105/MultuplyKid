@@ -17,9 +17,17 @@ func calculuteNumber(n numbers) int {
 	return n.values[0] * n.values[1]
 }
 
+var other []numbers
+
 func generateNumber() (n numbers) {
 	n.values[0] = 7 + rand.Intn(3)
 	n.values[1] = rand.Intn(11)
+	for _, nn := range other {
+		if nn.values[0] == n.values[0] && nn.values[1] == n.values[1] {
+			return generateNumber()
+		}
+	}
+	other = append(other, n)
 	return
 }
 
